@@ -1,166 +1,318 @@
-🚀 Cloud-Native DevOps Project
+# 🚀 Cloud-Native DevOps Project
 
 <p align="center">
-  <img src="assets/cloud-native-devops-architecture.png" alt="Cloud-Native DevOps Architecture" width="100%">
-</p><p align="center">
-  <strong>End-to-End Full-Stack Application Deployment on AWS EKS</strong>
-</p><p align="center">
+  <img src="https://imgur.com/cp6cwlX.png" alt="Cloud-Native DevOps Project Banner" width="100%">
+</p>
+
+<p align="center">
+  <strong>Automate • Deploy • Scale • Secure</strong>
+</p>
+
+<p align="center">
+  A production-oriented cloud-native infrastructure project demonstrating modern DevOps practices, AWS cloud services, Kubernetes orchestration, Infrastructure as Code, and automated CI/CD workflows.
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/AWS-Cloud-orange?logo=amazonaws">
-  <img src="https://img.shields.io/badge/Jenkins-CI%2FCD-red?logo=jenkins">
-  <img src="https://img.shields.io/badge/Docker-Containerization-blue?logo=docker">
-  <img src="https://img.shields.io/badge/Kubernetes-Orchestration-blue?logo=kubernetes">
   <img src="https://img.shields.io/badge/Terraform-IaC-purple?logo=terraform">
-  <img src="https://img.shields.io/badge/SonarQube-Code%20Quality-orange?logo=sonarqube">
-</p>---
+  <img src="https://img.shields.io/badge/Jenkins-CI%2FCD-red?logo=jenkins">
+  <img src="https://img.shields.io/badge/Docker-Containers-blue?logo=docker">
+  <img src="https://img.shields.io/badge/Kubernetes-EKS-blue?logo=kubernetes">
+  <img src="https://img.shields.io/badge/DevOps-Automation-success">
+</p>
 
-📌 Project Overview
+---
 
-This repository contains a full-stack application deployment using modern DevOps practices and cloud-native technologies.
+## 📋 Project Overview
 
-The project demonstrates the implementation of Infrastructure as Code (IaC), containerization, orchestration, and continuous integration/continuous deployment (CI/CD) pipelines.
+This repository demonstrates a comprehensive cloud-native application deployment using modern DevOps tools and AWS cloud infrastructure.
 
-It integrates AWS cloud services, Jenkins automation, Docker containers, Kubernetes orchestration, and Terraform infrastructure provisioning to create a scalable and automated application deployment workflow.
+The project focuses on automating the complete software delivery lifecycle through Infrastructure as Code, containerization, orchestration, continuous integration, continuous deployment, security scanning, and monitoring.
 
-🏗️ Architecture Overview
+### Key Objectives
 
-The architecture demonstrates an end-to-end DevOps workflow:
+- Infrastructure automation using Terraform
+- Container orchestration with Amazon EKS
+- CI/CD pipeline implementation using Jenkins
+- Artifact management using Nexus
+- Code quality analysis with SonarQube
+- Security scanning using CodeQL and Veracode
+- Cloud infrastructure monitoring and observability
+- Scalable and secure application deployment
 
-- Developer pushes code to GitHub.
-- GitHub Webhooks trigger Jenkins.
-- Jenkins executes the CI/CD pipeline.
-- SonarQube performs code quality analysis.
-- Docker builds container images.
-- Amazon ECR stores container images.
-- Terraform provisions cloud infrastructure.
-- Amazon EKS manages containerized applications.
-- AWS Route 53 manages DNS.
-- Application Load Balancer distributes traffic.
-- Amazon EFS provides shared storage.
+## 🏗️ Infrastructure as Code — Terraform
 
-🛠️ Technology Stack
+The infrastructure is provisioned using Terraform, enabling automated, repeatable, and version-controlled cloud resource management.
 
-Technology| Purpose
-AWS| Cloud infrastructure
-Amazon EKS| Kubernetes orchestration
-Amazon ECR| Docker image registry
-EC2| Virtual servers
-Jenkins| CI/CD automation
-Docker| Containerization
-Kubernetes| Container orchestration
-Terraform| Infrastructure as Code
-SonarQube| Code quality analysis
-GitHub| Source code management
-AWS Route 53| DNS management
-AWS ALB| Application traffic distribution
-Amazon EFS| Shared file storage
+Terraform state management and locking are configured using AWS S3 and appropriate state-locking mechanisms.
 
-🔄 CI/CD Pipeline
+### AWS Resources
 
+**Networking**
+- Amazon VPC
+- Public, private, and database subnets
+- Internet Gateway
+- NAT Gateway
+- Route Tables
+- Security Groups
+
+**Compute & Kubernetes**
+- Amazon EKS
+- EC2 Bastion Host
+- Jenkins Server
+- Jenkins Agent
+
+**Storage & Database**
+- Amazon RDS MySQL
+- Amazon EFS
+- Amazon S3
+- Amazon ECR
+
+**Networking & Security**
+- Amazon Route 53
+- AWS Application Load Balancer
+- AWS CloudFront
+- AWS Certificate Manager
+- AWS KMS
+
+### Terraform Directory Structure
+
+```text
+terraform/
+├── 00-vpc/
+├── 10-sg/
+├── 20-bastion/
+├── 30-db/
+├── 40-eks/
+├── 50-acm/
+├── 60-ingress-alb/
+└── 70-ecr/
+```
+
+> Refer to the Terraform directory for infrastructure provisioning instructions.
+
+## ☸️ Kubernetes Architecture — Amazon EKS
+
+The application is deployed on Amazon Elastic Kubernetes Service (EKS), providing container orchestration, scalability, and availability.
+
+### Cluster Configuration
+
+- Amazon EKS managed Kubernetes
+- Multi-AZ architecture
+- On-demand and Spot worker nodes
+- Horizontal Pod Autoscaling
+- Rolling updates
+- Health checks and readiness probes
+- Resource requests and limits
+
+### Kubernetes Components
+
+**Traffic Management**
+- AWS Application Load Balancer
+- AWS Load Balancer Controller
+- Kubernetes Ingress
+- URL-based routing
+- SSL/TLS termination
+
+**Application Management**
+- Kubernetes Deployments
+- Services
+- ConfigMaps
+- Secrets
+- Helm Charts
+- Horizontal Pod Autoscaler
+
+**Persistent Storage**
+- Amazon EFS
+- Persistent Volumes
+- Persistent Volume Claims
+- Dynamic storage provisioning
+
+### Helm Chart Structure
+
+```text
+helm/
+├── Chart.yaml
+├── values.yaml
+└── templates/
+    ├── deployment.yaml
+    ├── service.yaml
+    ├── ingress.yaml
+    ├── configmap.yaml
+    ├── secret.yaml
+    └── hpa.yaml
+```
+
+## 🚀 CI/CD Pipeline — Jenkins
+
+The CI/CD pipeline automates application build, testing, code analysis, containerization, and deployment.
+
+Jenkins integrates with GitHub through webhooks to trigger automated pipeline execution.
+
+### Pipeline Workflow
+
+```text
 Developer
-    │
-    ▼
-VS Code
-    │
-    ▼
+   │
+   ▼
 GitHub Repository
-    │
-    ▼
+   │
+   ▼
 GitHub Webhook
-    │
-    ▼
+   │
+   ▼
 Jenkins CI/CD Pipeline
-    │
-    ├── Code Checkout
-    ├── Dependency Installation
-    ├── SonarQube Analysis
-    ├── Docker Image Build
-    ├── Push Image to Amazon ECR
-    ├── Terraform Infrastructure Provisioning
-    └── Kubernetes Deployment
-            │
-            ▼
-        AWS EKS Cluster
-            │
-            ▼
+   │
+   ├── Code Checkout
+   ├── Dependency Installation
+   ├── Unit Testing
+   ├── SonarQube Analysis
+   ├── CodeQL Security Analysis
+   ├── Docker Image Build
+   ├── Container Security Scan
+   ├── Artifact Upload to Nexus
+   ├── Image Push to Amazon ECR
+   ├── Terraform Infrastructure Management
+   └── Kubernetes Deployment
+           │
+           ▼
+       Amazon EKS
+           │
+           ▼
     Application Load Balancer
-            │
-            ▼
-      Deployed Application
+           │
+           ▼
+    Cloud-Native Application
+```
 
-✨ Key Features
+### Pipeline Features
 
-- End-to-end CI/CD automation
-- AWS cloud infrastructure deployment
-- Infrastructure provisioning using Terraform
-- Docker-based application containerization
-- Kubernetes-based application orchestration
-- Automated code quality analysis
-- Amazon ECR image management
-- AWS EKS cluster deployment
-- Load balancing and scalable application architecture
-- GitHub webhook integration
+- Automated source code checkout
+- Multi-stage Jenkins pipeline
+- Parallel execution where appropriate
+- Code quality verification
+- Automated container builds
+- Artifact management
+- Infrastructure deployment
+- Kubernetes rolling updates
+- Deployment validation
+- Failure notifications
 
-📂 Project Structure
+### Jenkinsfile Structure
 
-cloud-native-devops-project/
-│
-├── application/
-│   └── Application source code
-│
-├── docker/
-│   └── Dockerfile
-│
-├── Jenkinsfile
-│
-├── terraform/
-│   ├── main.tf
-│   ├── variables.tf
-│   ├── outputs.tf
-│   └── providers.tf
-│
-├── kubernetes/
-│   ├── deployment.yaml
-│   ├── service.yaml
-│   └── ingress.yaml
-│
-├── sonar-project.properties
-│
-├── scripts/
-│   └── deployment.sh
-│
-├── assets/
-│   └── cloud-native-devops-architecture.png
-│
-└── README.md
+```groovy
+pipeline {
+    agent any
 
-🚀 Getting Started
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checking out source code'
+            }
+        }
 
-Prerequisites
+        stage('Build') {
+            steps {
+                echo 'Building application'
+            }
+        }
 
-Install the following tools:
+        stage('Test') {
+            steps {
+                echo 'Running automated tests'
+            }
+        }
 
-- AWS CLI
+        stage('Docker Build') {
+            steps {
+                echo 'Building Docker image'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying application'
+            }
+        }
+    }
+}
+```
+
+> This is an illustrative Jenkins pipeline. Replace placeholder stages with actual build, test, and deployment commands.
+
+## 🛠️ Setup Instructions
+
+### Prerequisites
+
+- AWS Account
+- GitHub Repository
 - Docker
 - Jenkins
 - Terraform
 - kubectl
+- Helm
+- AWS CLI
+- Linux environment
+- Domain name (optional)
+
+### 1. Jenkins Setup
+
+1. Launch an EC2 instance for Jenkins.
+2. Configure the required security groups.
+3. Install Java and Jenkins.
+4. Start the Jenkins service.
+5. Access the Jenkins dashboard.
+6. Install the required plugins.
+
+Example:
+
+```bash
+sudo systemctl enable jenkins
+sudo systemctl start jenkins
+sudo systemctl status jenkins
+```
+
+### 2. Jenkins Agent Setup
+
+Configure a Jenkins agent with the required DevOps tools.
+
+Install:
+
+- Docker
+- AWS CLI
+- Terraform
+- kubectl
+- Helm
 - Git
-- Kubernetes / AWS EKS access
 
-Step 1: Clone the Repository
+Configure the Jenkins controller-agent connection securely.
 
-git clone https://github.com/YOUR_USERNAME/cloud-native-devops-project.git
+### 3. Nexus Repository Setup
 
-cd cloud-native-devops-project
+Configure Nexus Repository Manager for artifact management.
 
-Step 2: Configure AWS
+- Create hosted Maven repositories.
+- Configure Docker repositories if needed.
+- Integrate Nexus with Jenkins.
+- Configure credentials securely.
+- Upload and retrieve build artifacts.
 
-aws configure
+### 4. SonarQube Setup
 
-Configure AWS credentials securely.
+Deploy SonarQube and integrate it with Jenkins.
 
-Step 3: Initialize Terraform
+Configure:
 
+- SonarQube Server
+- SonarQube Scanner
+- Authentication Token
+- Quality Gates
+- Code Coverage
+- Security Analysis
+
+### 5. Terraform Infrastructure Setup
+
+```bash
 cd terraform
 
 terraform init
@@ -168,67 +320,159 @@ terraform init
 terraform validate
 
 terraform plan
+```
 
-Review the proposed infrastructure changes before applying.
+Review infrastructure changes before applying:
 
+```bash
 terraform apply
+```
 
-Step 4: Build Docker Image
+### 6. Kubernetes Deployment
 
-docker build -t cloud-native-devops-app .
+Configure AWS EKS access:
 
-Step 5: Deploy to Kubernetes
+```bash
+aws eks update-kubeconfig \
+  --region YOUR_AWS_REGION \
+  --name YOUR_EKS_CLUSTER
+```
 
+Deploy Kubernetes resources:
+
+```bash
 kubectl apply -f kubernetes/
+```
 
-Verify the deployment:
+Verify deployment:
+
+```bash
+kubectl get nodes
 
 kubectl get pods
 
 kubectl get services
 
 kubectl get deployments
+```
 
-🔐 Security Best Practices
+## 📊 Monitoring & Observability
 
-- Use IAM roles and least-privilege permissions.
-- Never commit AWS credentials or secrets.
-- Store sensitive information securely.
-- Scan Docker images for vulnerabilities.
-- Use private container registries.
-- Enable monitoring and logging.
-- Review AWS resource permissions regularly.
+### Monitoring Stack
 
-🎯 Project Objectives
+| Tool | Purpose |
+|---|---|
+| Prometheus | Metrics collection |
+| Grafana | Monitoring dashboards |
+| AWS CloudWatch | AWS monitoring |
+| ELK Stack | Centralized logging |
+| PagerDuty | Incident notifications |
 
-- Gain practical experience with AWS cloud infrastructure.
-- Implement automated DevOps workflows.
-- Understand CI/CD pipeline architecture.
-- Learn Kubernetes deployment strategies.
-- Apply Infrastructure as Code principles.
-- Develop cloud engineering and automation skills.
+### Monitoring Capabilities
 
-🔮 Future Enhancements
+- Application performance monitoring
+- Kubernetes cluster monitoring
+- CPU and memory utilization
+- Infrastructure metrics
+- Application logs
+- Alerting and notifications
+- Deployment health monitoring
 
-- Integrate Prometheus and Grafana.
-- Implement Argo CD for GitOps.
-- Add automated security scanning.
-- Configure centralized logging.
-- Implement blue-green deployments.
-- Integrate AWS CloudWatch monitoring.
+## 🔐 Security & DevSecOps
 
-👨‍💻 Author
+Security is integrated throughout the application development and deployment lifecycle.
 
-Vishal Chapke
+### Security Tools
 
-B.Tech Computer Science Student | Cloud & DevOps Enthusiast
+| Tool | Purpose |
+|---|---|
+| SonarQube | Code quality and security analysis |
+| CodeQL | Code security analysis |
+| Veracode | Application security testing |
+| Docker | Containerization |
+| AWS IAM | Access management |
+| AWS KMS | Encryption key management |
 
-GitHub: "@chapkevishal82-hue" (https://github.com/chapkevishal82-hue)
+### Security Best Practices
+
+- IAM least-privilege access
+- Private subnet deployment
+- Secure secrets management
+- HTTPS/TLS communication
+- Container image scanning
+- Dependency vulnerability scanning
+- Infrastructure security validation
+- Kubernetes RBAC
+- AWS resource encryption
+- Secure CI/CD pipeline configuration
+
+## 📈 Future Enhancements
+
+- GitOps implementation using Argo CD
+- Advanced monitoring using Prometheus and Grafana
+- Automated vulnerability scanning with Trivy
+- Blue-green deployment strategy
+- Canary deployment implementation
+- AWS WAF integration
+- Advanced Kubernetes autoscaling
+- Centralized logging and observability
+
+## 🤝 Contributing
+
+Contributions, suggestions, and improvements are welcome.
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Commit your changes.
+4. Push your branch.
+5. Submit a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+See the `LICENSE` file for details.
 
 ---
 
+## 👨‍💻 Author
+
+### Vishal Chapke
+
+**B.Tech Computer Science Student | Cloud & DevOps Enthusiast**
+
+Aspiring Cloud and DevOps Engineer passionate about cloud infrastructure, automation, containerization, CI/CD, and scalable application deployment.
+
 <p align="center">
-  <strong>Automate • Deploy • Scale • Innovate</strong>
-</p><p align="center">
-  ⭐ If you find this project useful, consider giving it a star!
+  <a href="https://github.com/chapkevishal82-hue">
+    <img src="https://img.shields.io/badge/GitHub-Vishal%20Chapke-181717?style=for-the-badge&logo=github">
+  </a>
+  <a href="https://linkedin.com/in/vishal-chapke-9bb3b0344/">
+    <img src="https://img.shields.io/badge/LinkedIn-Vishal%20Chapke-0A66C2?style=for-the-badge&logo=linkedin">
+  </a>
+</p>
+
+📧 **Email:** chapkevishal82@gmail.com
+
+---
+
+## ⭐ Support This Project
+
+If you find this project useful:
+
+- ⭐ Star this repository
+- 🍴 Fork the repository
+- 💡 Share suggestions
+- 🤝 Contribute improvements
+
+<p align="center">
+  <strong>Building the future with Cloud, Automation, and DevOps.</strong>
+</p>
+
+<p align="center">
+  Made with ❤️ by Vishal Chapke
+</p>
+
+<p align="center">
+  #AWS #DevOps #CloudComputing #Kubernetes #Docker #Terraform #Jenkins #CICD #DevSecOps
 </p>

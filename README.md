@@ -437,22 +437,34 @@ See the `LICENSE` file for details.
 
 ## 👨‍💻 Author
 
-### Vishal Chapke
+## 👨‍💻 Author & Project Links
 
+### Vishal Chapke
 **B.Tech Computer Science Student | Cloud & DevOps Enthusiast**
 
-Aspiring Cloud and DevOps Engineer passionate about cloud infrastructure, automation, containerization, CI/CD, and scalable application deployment.
-
 <p align="center">
+  <a href="https://github.com/chapkevishal82-hue/cloud-native-devops-project">
+    <img src="https://img.shields.io/badge/Project%20Repository-GitHub-181717?style=for-the-badge&logo=github" alt="Project Repository">
+  </a>
   <a href="https://github.com/chapkevishal82-hue">
-    <img src="https://img.shields.io/badge/GitHub-Vishal%20Chapke-181717?style=for-the-badge&logo=github">
+    <img src="https://img.shields.io/badge/GitHub-Profile-181717?style=for-the-badge&logo=github" alt="GitHub Profile">
   </a>
   <a href="https://linkedin.com/in/vishal-chapke-9bb3b0344/">
-    <img src="https://img.shields.io/badge/LinkedIn-Vishal%20Chapke-0A66C2?style=for-the-badge&logo=linkedin">
+    <img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin" alt="LinkedIn Profile">
   </a>
 </p>
 
-📧 **Email:** chapkevishal82@gmail.com
+<p align="center">
+  ⭐ Star the repository if you find it useful!
+</p>
+
+<p align="center">
+  <strong>Building the future with Cloud, Automation & DevOps.</strong>
+</p>
+
+<p align="center">
+  Made with ❤️ by Vishal Chapke
+</p>
 
 ---
 

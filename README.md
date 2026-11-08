@@ -435,8 +435,6 @@ See the `LICENSE` file for details.
 
 ---
 
-## 👨‍💻 Author
-
 ## 👨‍💻 Author & Project Links
 
 ### Vishal Chapke
